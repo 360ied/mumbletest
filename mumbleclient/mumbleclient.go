@@ -16,6 +16,8 @@ type MumbleClient struct {
 	connReader    *bufio.Reader // TLS conn reader
 	connWriteLock sync.Mutex
 
+	messageCallbacksMu sync.Mutex
+
 	messageVersionCallbacks                []func(mumbleprotocol.Version)
 	messageUDPTunnelCallbacks              []func(mumbleprotocol.UDPTunnel)
 	messageAuthenticateCallbacks           []func(mumbleprotocol.Authenticate)
@@ -43,7 +45,6 @@ type MumbleClient struct {
 	messageServerConfigCallbacks           []func(mumbleprotocol.ServerConfig)
 	messageSuggestConfigCallbacks          []func(mumbleprotocol.SuggestConfig)
 	messagePluginDataTransmissionCallbacks []func(mumbleprotocol.PluginDataTransmission)
-	messageCallbacksMu                     sync.Mutex
 
 	singleCallMessageVersionCallbacks                []func(mumbleprotocol.Version)
 	singleCallMessageUDPTunnelCallbacks              []func(mumbleprotocol.UDPTunnel)
@@ -72,7 +73,6 @@ type MumbleClient struct {
 	singleCallMessageServerConfigCallbacks           []func(mumbleprotocol.ServerConfig)
 	singleCallMessageSuggestConfigCallbacks          []func(mumbleprotocol.SuggestConfig)
 	singleCallMessagePluginDataTransmissionCallbacks []func(mumbleprotocol.PluginDataTransmission)
-	singleCallMessageCallbacksMu                     sync.Mutex
 }
 
 // synchronous function

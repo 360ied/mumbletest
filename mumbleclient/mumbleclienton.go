@@ -165,163 +165,163 @@ func (mc *MumbleClient) OnMessagePluginDataTransmission(callback func(mumbleprot
 }
 
 func (mc *MumbleClient) SingleCallOnMessageVersion(callback func(mumbleprotocol.Version)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageVersionCallbacks = append(mc.singleCallMessageVersionCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageUDPTunnel(callback func(mumbleprotocol.UDPTunnel)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageUDPTunnelCallbacks = append(mc.singleCallMessageUDPTunnelCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageAuthenticate(callback func(mumbleprotocol.Authenticate)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageAuthenticateCallbacks = append(mc.singleCallMessageAuthenticateCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessagePing(callback func(mumbleprotocol.Ping)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessagePingCallbacks = append(mc.singleCallMessagePingCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageReject(callback func(mumbleprotocol.Reject)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageRejectCallbacks = append(mc.singleCallMessageRejectCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageServerSync(callback func(mumbleprotocol.ServerSync)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageServerSyncCallbacks = append(mc.singleCallMessageServerSyncCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageChannelRemove(callback func(mumbleprotocol.ChannelRemove)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageChannelRemoveCallbacks = append(mc.singleCallMessageChannelRemoveCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageChannelState(callback func(mumbleprotocol.ChannelState)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageChannelStateCallbacks = append(mc.singleCallMessageChannelStateCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageUserRemove(callback func(mumbleprotocol.UserRemove)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageUserRemoveCallbacks = append(mc.singleCallMessageUserRemoveCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageUserState(callback func(mumbleprotocol.UserState)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageUserStateCallbacks = append(mc.singleCallMessageUserStateCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageBanList(callback func(mumbleprotocol.BanList)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageBanListCallbacks = append(mc.singleCallMessageBanListCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageTextMessage(callback func(mumbleprotocol.TextMessage)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageTextMessageCallbacks = append(mc.singleCallMessageTextMessageCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessagePermissionDenied(callback func(mumbleprotocol.PermissionDenied)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessagePermissionDeniedCallbacks = append(mc.singleCallMessagePermissionDeniedCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageACL(callback func(mumbleprotocol.ACL)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageACLCallbacks = append(mc.singleCallMessageACLCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageQueryUsers(callback func(mumbleprotocol.QueryUsers)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageQueryUsersCallbacks = append(mc.singleCallMessageQueryUsersCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageCryptSetup(callback func(mumbleprotocol.CryptSetup)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageCryptSetupCallbacks = append(mc.singleCallMessageCryptSetupCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageContextActionModify(callback func(mumbleprotocol.ContextActionModify)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageContextActionModifyCallbacks = append(mc.singleCallMessageContextActionModifyCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageContextAction(callback func(mumbleprotocol.ContextAction)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageContextActionCallbacks = append(mc.singleCallMessageContextActionCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageUserList(callback func(mumbleprotocol.UserList)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageUserListCallbacks = append(mc.singleCallMessageUserListCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageVoiceTarget(callback func(mumbleprotocol.VoiceTarget)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageVoiceTargetCallbacks = append(mc.singleCallMessageVoiceTargetCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessagePermissionQuery(callback func(mumbleprotocol.PermissionQuery)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessagePermissionQueryCallbacks = append(mc.singleCallMessagePermissionQueryCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageCodecVersion(callback func(mumbleprotocol.CodecVersion)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageCodecVersionCallbacks = append(mc.singleCallMessageCodecVersionCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageUserStats(callback func(mumbleprotocol.UserStats)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageUserStatsCallbacks = append(mc.singleCallMessageUserStatsCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageRequestBlob(callback func(mumbleprotocol.RequestBlob)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageRequestBlobCallbacks = append(mc.singleCallMessageRequestBlobCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageServerConfig(callback func(mumbleprotocol.ServerConfig)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageServerConfigCallbacks = append(mc.singleCallMessageServerConfigCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessageSuggestConfig(callback func(mumbleprotocol.SuggestConfig)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessageSuggestConfigCallbacks = append(mc.singleCallMessageSuggestConfigCallbacks, callback)
 }
 
 func (mc *MumbleClient) SingleCallOnMessagePluginDataTransmission(callback func(mumbleprotocol.PluginDataTransmission)) {
-	mc.singleCallMessageCallbacksMu.Lock()
-	defer mc.singleCallMessageCallbacksMu.Unlock()
+	mc.messageCallbacksMu.Lock()
+	defer mc.messageCallbacksMu.Unlock()
 	mc.singleCallMessagePluginDataTransmissionCallbacks = append(mc.singleCallMessagePluginDataTransmissionCallbacks, callback)
 }
