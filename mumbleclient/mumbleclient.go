@@ -2,12 +2,14 @@ package mumbleclient
 
 import (
 	"bufio"
+	"context"
 	"mumbletest/bufferhelpers"
 	"mumbletest/bufferpool"
 	"mumbletest/mumbleclient/mumbleprotocol"
 	"net"
 	"sync"
 
+	"golang.org/x/sync/errgroup"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -73,6 +75,8 @@ type MumbleClient struct {
 	singleCallMessageServerConfigCallbacks           []func(mumbleprotocol.ServerConfig)
 	singleCallMessageSuggestConfigCallbacks          []func(mumbleprotocol.SuggestConfig)
 	singleCallMessagePluginDataTransmissionCallbacks []func(mumbleprotocol.PluginDataTransmission)
+
+	Context context.Context
 }
 
 // synchronous function
@@ -93,18 +97,25 @@ func (mc *MumbleClient) SendPacket(packetID mumbleprotocol.MumblePacketID, messa
 	return err
 }
 
-func ConnectMumble(tlsConn net.Conn, username string, password string, tokens []string) (mc *MumbleClient, err error) {
-	mc = new(MumbleClient)
+func ConnectMumble(tlsConn net.Conn, username string, password string, tokens []string, callback func(mc *MumbleClient)) error {
+	mc := new(MumbleClient)
 	mc.conn = tlsConn
 	mc.connReader = bufio.NewReader(tlsConn)
 
 	clientReleaseName := "mumbletest"
-	err = mc.SendPacket(mumbleprotocol.IDVersion, &mumbleprotocol.Version{
+	err := mc.SendPacket(mumbleprotocol.IDVersion, &mumbleprotocol.Version{
 		Version: &CurrentMumbleVersion,
 		Release: &clientReleaseName,
 	})
 	if err != nil {
-		return
+		return err
 	}
 
+	errg, ctx := errgroup.WithContext(context.Background())
+	mc.Context = ctx
+
+	errg.Go(mc.receivePackets)
+	errg.Go(mc.loopPing)
+
+	return errg.Wait()
 }

@@ -10,6 +10,7 @@ import (
 )
 
 // should be run in its own goroutine
+// error returned is always non-nil
 func (mc *MumbleClient) receivePackets() error {
 	for {
 		if err := receivePacket(mc); err != nil {
