@@ -102,11 +102,10 @@ func ConnectMumble(tlsConn net.Conn, username string, password string, tokens []
 	mc.connReader = bufio.NewReader(tlsConn)
 
 	clientReleaseName := "mumbletest"
-	err := mc.SendPacket(mumbleprotocol.IDVersion, &mumbleprotocol.Version{
+	if err := mc.SendPacket(mumbleprotocol.IDVersion, &mumbleprotocol.Version{
 		Version: &CurrentMumbleVersion,
 		Release: &clientReleaseName,
-	})
-	if err != nil {
+	}); err != nil {
 		return err
 	}
 
@@ -114,6 +113,14 @@ func ConnectMumble(tlsConn net.Conn, username string, password string, tokens []
 	mc.Context = ctx
 
 	errg.Go(mc.receivePackets)
+
+	if err := mc.SendPacket(mumbleprotocol.IDAuthenticate, &mumbleprotocol.Authenticate{
+		Username: &username,
+		Password: &password,
+	}); err != nil {
+		return err
+	}
+
 	errg.Go(mc.loopPing)
 
 	return errg.Wait()
