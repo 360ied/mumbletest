@@ -123,5 +123,7 @@ func ConnectMumble(tlsConn net.Conn, username string, password string, tokens []
 
 	errg.Go(mc.loopPing)
 
+	callback(mc)
+
 	return errg.Wait()
 }

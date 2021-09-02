@@ -25,8 +25,10 @@ func (mb *MumbleBot) Start() error {
 		return err
 	}
 	defer tlsConn.Close()
+	mb.Logger.Printf("Dialed %s", mb.ServerIP)
 
 	return mumbleclient.ConnectMumble(tlsConn, mb.Username, mb.Password, nil, func(mc *mumbleclient.MumbleClient) {
+		mb.Logger.Printf("Connected to %s as %s", mb.ServerIP, mb.Username)
 		mc.OnMessageTextMessage(func(tm *mumbleprotocol.TextMessage) {
 			mb.Logger.Printf("[MESSAGE] <%d> %s", tm.GetActor(), tm.GetMessage())
 		})
