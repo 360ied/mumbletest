@@ -24,6 +24,7 @@ func (mb *MumbleBot) Start() error {
 	if err != nil {
 		return err
 	}
+	defer tlsConn.Close()
 
 	return mumbleclient.ConnectMumble(tlsConn, mb.Username, mb.Password, nil, func(mc *mumbleclient.MumbleClient) {
 		mc.OnMessageTextMessage(func(tm *mumbleprotocol.TextMessage) {
