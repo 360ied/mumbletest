@@ -1,7 +1,9 @@
 package mumbleprotocol
 
+type MumblePacketID uint16
+
 const (
-	IDVersion uint16 = iota
+	IDVersion MumblePacketID = iota
 	IDUDPTunnel
 	IDAuthenticate
 	IDPing
