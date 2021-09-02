@@ -56,11 +56,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageVersionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageVersionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageVersionCallbacks = nil
 	case mumbleprotocol.IDUDPTunnel:
@@ -70,11 +70,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageUDPTunnelCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageUDPTunnelCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageUDPTunnelCallbacks = nil
 	case mumbleprotocol.IDAuthenticate:
@@ -84,11 +84,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageAuthenticateCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageAuthenticateCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageAuthenticateCallbacks = nil
 	case mumbleprotocol.IDPing:
@@ -98,11 +98,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messagePingCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessagePingCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessagePingCallbacks = nil
 	case mumbleprotocol.IDReject:
@@ -112,11 +112,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageRejectCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageRejectCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageRejectCallbacks = nil
 	case mumbleprotocol.IDServerSync:
@@ -126,11 +126,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageServerSyncCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageServerSyncCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageServerSyncCallbacks = nil
 	case mumbleprotocol.IDChannelRemove:
@@ -140,11 +140,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageChannelRemoveCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageChannelRemoveCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageChannelRemoveCallbacks = nil
 	case mumbleprotocol.IDChannelState:
@@ -154,11 +154,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageChannelStateCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageChannelStateCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageChannelStateCallbacks = nil
 	case mumbleprotocol.IDUserRemove:
@@ -168,11 +168,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageUserRemoveCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageUserRemoveCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageUserRemoveCallbacks = nil
 	case mumbleprotocol.IDUserState:
@@ -182,11 +182,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageUserStateCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageUserStateCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageUserStateCallbacks = nil
 	case mumbleprotocol.IDBanList:
@@ -196,11 +196,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageBanListCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageBanListCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageBanListCallbacks = nil
 	case mumbleprotocol.IDTextMessage:
@@ -210,11 +210,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageTextMessageCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageTextMessageCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageTextMessageCallbacks = nil
 	case mumbleprotocol.IDPermissionDenied:
@@ -224,11 +224,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messagePermissionDeniedCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessagePermissionDeniedCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessagePermissionDeniedCallbacks = nil
 	case mumbleprotocol.IDACL:
@@ -238,11 +238,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageACLCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageACLCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageACLCallbacks = nil
 	case mumbleprotocol.IDQueryUsers:
@@ -252,11 +252,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageQueryUsersCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageQueryUsersCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageQueryUsersCallbacks = nil
 	case mumbleprotocol.IDCryptSetup:
@@ -266,11 +266,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageCryptSetupCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageCryptSetupCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageCryptSetupCallbacks = nil
 	case mumbleprotocol.IDContextActionModify:
@@ -280,11 +280,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageContextActionModifyCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageContextActionModifyCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageContextActionModifyCallbacks = nil
 	case mumbleprotocol.IDContextAction:
@@ -294,11 +294,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageContextActionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageContextActionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageContextActionCallbacks = nil
 	case mumbleprotocol.IDUserList:
@@ -308,11 +308,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageUserListCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageUserListCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageUserListCallbacks = nil
 	case mumbleprotocol.IDVoiceTarget:
@@ -322,11 +322,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageVoiceTargetCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageVoiceTargetCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageVoiceTargetCallbacks = nil
 	case mumbleprotocol.IDPermissionQuery:
@@ -336,11 +336,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messagePermissionQueryCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessagePermissionQueryCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessagePermissionQueryCallbacks = nil
 	case mumbleprotocol.IDCodecVersion:
@@ -350,11 +350,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageCodecVersionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageCodecVersionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageCodecVersionCallbacks = nil
 	case mumbleprotocol.IDUserStats:
@@ -364,11 +364,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageUserStatsCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageUserStatsCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageUserStatsCallbacks = nil
 	case mumbleprotocol.IDRequestBlob:
@@ -378,11 +378,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageRequestBlobCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageRequestBlobCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageRequestBlobCallbacks = nil
 	case mumbleprotocol.IDServerConfig:
@@ -392,11 +392,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageServerConfigCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageServerConfigCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageServerConfigCallbacks = nil
 	case mumbleprotocol.IDSuggestConfig:
@@ -406,11 +406,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messageSuggestConfigCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessageSuggestConfigCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessageSuggestConfigCallbacks = nil
 	case mumbleprotocol.IDPluginDataTransmission:
@@ -420,11 +420,11 @@ func receivePacket(mc *MumbleClient) error {
 		}
 
 		for _, callback := range mc.messagePluginDataTransmissionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 
 		for _, callback := range mc.singleCallMessagePluginDataTransmissionCallbacks {
-			go callback(message)
+			go callback(&message)
 		}
 		mc.singleCallMessagePluginDataTransmissionCallbacks = nil
 	}
