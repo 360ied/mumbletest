@@ -6,11 +6,9 @@ import (
 )
 
 func (mc *MumbleClient) loopPing() error {
-	ticker := time.NewTicker(5 * time.Second)
-	defer ticker.Stop()
-
-	for timestamp := <-ticker.C; true; {
-		unix := uint64(timestamp.Unix())
+	for {
+		time.Sleep(5 * time.Second)
+		unix := uint64(time.Now().Unix())
 
 		if err := mc.SendPacket(mumbleprotocol.IDPing, &mumbleprotocol.Ping{
 			Timestamp: &unix,
@@ -18,6 +16,4 @@ func (mc *MumbleClient) loopPing() error {
 			return err
 		}
 	}
-
-	panic("unreachable")
 }
