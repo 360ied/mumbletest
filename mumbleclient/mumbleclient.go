@@ -14,9 +14,8 @@ import (
 )
 
 type MumbleClient struct {
-	conn          net.Conn      // TLS conn
-	connReader    *bufio.Reader // TLS conn reader
-	connWriteLock sync.Mutex
+	conn       net.Conn      // TLS conn
+	connReader *bufio.Reader // TLS conn reader
 
 	messageCallbacksMu sync.Mutex
 
