@@ -1,0 +1,14 @@
+	case mumbleprotocol.IDVersion:
+		message := mumbleprotocol.Version{}
+		if err := proto.Unmarshal(buf.Bytes(), &message); err != nil {
+			return err
+		}
+
+		for _, callback := range mc.messageVersionCallbacks {
+			go callback(message)
+		}
+
+		for _, callback := range mc.singleCallMessageVersionCallbacks {
+			go callback(message)
+		}
+		mc.singleCallMessageVersionCallbacks = nil
