@@ -100,7 +100,7 @@ func ConnectMumble(tlsConn net.Conn, username string, password string, tokens []
 
 	clientReleaseName := "mumbletest"
 	err = mc.SendPacket(mumbleprotocol.IDVersion, &mumbleprotocol.Version{
-		Version: (*uint32)(&CurrentMumbleVersion),
+		Version: &CurrentMumbleVersion,
 		Release: &clientReleaseName,
 	})
 	if err != nil {
