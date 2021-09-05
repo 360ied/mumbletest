@@ -31,6 +31,14 @@ func (mb *MumbleBot) Start() error {
 		mb.Logger.Printf("Connected to %s as %s", mb.ServerIP, mb.Username)
 		mc.OnMessageTextMessage(func(tm *mumbleprotocol.TextMessage) {
 			mb.Logger.Printf("[MESSAGE] <%d> %s", tm.GetActor(), tm.GetMessage())
+
+			if tm.GetMessage() == "." {
+				message := "."
+				mc.SendPacket(mumbleprotocol.IDTextMessage, &mumbleprotocol.TextMessage{
+					ChannelId: tm.GetChannelId(),
+					Message:   &message,
+				})
+			}
 		})
 	})
 }

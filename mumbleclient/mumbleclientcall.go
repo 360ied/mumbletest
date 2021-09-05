@@ -2,6 +2,7 @@ package mumbleclient
 
 import (
 	"fmt"
+	"log"
 	"mumbletest/bufferhelpers"
 	"mumbletest/bufferpool"
 	"mumbletest/mumbleclient/mumbleprotocol"
@@ -29,6 +30,7 @@ func receivePacket(mc *MumbleClient) error {
 	if err != nil {
 		return err
 	}
+	log.Printf("recv %d", packetID)
 
 	packetLength, err := bufferhelpers.ReadBEUint32(mc.connReader)
 	if err != nil {

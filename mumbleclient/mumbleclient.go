@@ -3,11 +3,13 @@ package mumbleclient
 import (
 	"bufio"
 	"context"
+	"log"
 	"mumbletest/bufferhelpers"
 	"mumbletest/bufferpool"
 	"mumbletest/mumbleclient/mumbleprotocol"
 	"net"
 	"sync"
+	"time"
 
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/protobuf/proto"
@@ -80,6 +82,7 @@ type MumbleClient struct {
 
 // synchronous function
 func (mc *MumbleClient) SendPacket(packetID mumbleprotocol.MumblePacketID, message proto.Message) error {
+	log.Printf("sending %d", packetID)
 	b, err := proto.Marshal(message)
 	if err != nil {
 		return err
@@ -92,6 +95,9 @@ func (mc *MumbleClient) SendPacket(packetID mumbleprotocol.MumblePacketID, messa
 	bufferhelpers.WriteBEUint32(buf, uint32(len(b)))
 	buf.Write(b)
 
+	if err := mc.conn.SetWriteDeadline(time.Now().Add(5 * time.Second)); err != nil {
+		return err
+	}
 	_, err = mc.conn.Write(buf.Bytes())
 	return err
 }
